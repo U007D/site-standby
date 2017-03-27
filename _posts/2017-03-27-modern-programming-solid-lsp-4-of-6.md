@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Modern Programming: SO[L]ID (4 of 6)"
-date:   2017-03-27 15:40:00 -0700
+date:   2017-03-27 16:10:00 -0700
 categories: modern-programming solid lsp engineering-excellence
 ---
 # L - Liskov Substitution Principle (LSP), part ii
