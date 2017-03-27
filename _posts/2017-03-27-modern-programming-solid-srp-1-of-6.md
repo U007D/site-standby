@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Modern Programming: **S**OLID (1 of 6)"
+title:  "Modern Programming: *S*OLID (1 of 6)"
 date:   2017-03-27 14:49:00 -0700
 categories: modern-programming solid srp engineering-excellence
 ---
