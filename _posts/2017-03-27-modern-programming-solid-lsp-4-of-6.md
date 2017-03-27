@@ -4,9 +4,9 @@ title:  "Modern Programming: SO[L]ID (4 of 6)"
 date:   2017-03-27 15:40:00 -0700
 categories: modern-programming solid lsp engineering-excellence
 ---
-# L - Liskov Substitution Principle (LSP), part b
+# L - Liskov Substitution Principle (LSP), part ii
 
-As we discussed in [Liskov Substitution Principle (LSP) part a](https://bradleygibson.github.io/modern-programming/solid/lsp/engineering-excellence/2017/03/27/modern-programming-solid-lsp-3-of-6.html), this installment will look at an example of LSP in code (C++ this time).
+As we discussed in [Liskov Substitution Principle (LSP) part i](https://bradleygibson.github.io/modern-programming/solid/lsp/engineering-excellence/2017/03/27/modern-programming-solid-lsp-3-of-6.html), this installment will look at an example of LSP in code (C++ this time).
 
 Classic examples for illustrating LSP are the [Circle-Ellipse](https://en.wikipedia.org/wiki/Circle-ellipse_problem) or [Rectangle-Square](https://en.wikipedia.org/wiki/Liskov_substitution_principle#A_typical_violation) problem. But I find [Tom Dalling’s variation](http://www.tomdalling.com/blog/software-design/solid-class-design-the-liskov-substitution-principle/) to be a gentler, yet just-as-effective introduction to the concept. (I’ve reproduced and summarized Tom’s post here to eliminate the risk posed by [link rot](https://en.wikipedia.org/wiki/Link_rot).)
 
