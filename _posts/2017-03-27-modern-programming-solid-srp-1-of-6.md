@@ -1,3 +1,9 @@
+---
+layout: post
+title:  "Modern Programming: SOLID - SRP (1 of 6)"
+date:   2017-03-27 14:49:00 -0700
+categories: modern-programming solid srp engineering-excellence
+---
 # Rationale
 The primary motivation of these articles is to reduce the cost of maintenance of code.  This cost typically dwarfs the cost of writing code, since code is written "once" and then maintained for a (hopefully) long period of time (article #6 provides research data to back this).
 
