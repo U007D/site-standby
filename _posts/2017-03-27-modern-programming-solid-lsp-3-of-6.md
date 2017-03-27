@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Modern Programming: SO[L]ID (3 of 6)"
-date:   2017-03-27 15:14:00 -0700
+date:   2017-03-27 15:40:00 -0700
 categories: modern-programming solid lsp engineering-excellence
 ---
 The preceding chapter (Part 2) of this series can be found [here](https://bradleygibson.github.io/modern-programming/solid/ocp/engineering-excellence/2017/03/27/modern-programming-solid-ocp-2-of-6.html).
