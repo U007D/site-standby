@@ -4,7 +4,7 @@ title:  "Modern Programming: SO[L]ID (3 of 6)"
 date:   2017-03-27 15:40:00 -0700
 categories: modern-programming solid lsp engineering-excellence
 ---
-Modern Programming: SO[L]ID
+# L - Liskov Substitution Principle (LSP), part a
 
 The preceding chapter (Part 2) of this series can be found [here](https://bradleygibson.github.io/modern-programming/solid/ocp/engineering-excellence/2017/03/27/modern-programming-solid-ocp-2-of-6.html).
 
@@ -20,7 +20,7 @@ How can we know we have achieved this?
 
 A software entity (class, method, function, type, module, etc.) which operates on an object must be able to use objects derived from that object without knowing it.  When this condition is true, it can be said that the derived object is a *behavioral subtype* of its base object.
 
-To be a behavioral subtype of its base, an object or class must meet six conditions (my apologies in advance--did I mention that this was a fairly advanced topic?  Even if you skim the following definitions, the practical discussion of how they're applied is in part 2 of the LSP discussion [here]()):
+To be a behavioral subtype of its base, an object or class must meet six conditions (my apologies in advance--did I mention that this was a fairly advanced topic?  Even if you skim the following definitions, the practical discussion of how they're applied is in part 2 of the LSP discussion [here](https://bradleygibson.github.io/modern-programming/solid/lsp/engineering-excellence/2017/03/27/modern-programming-solid-lsp-4-of-6.html)):
 1) **Contravariance of parameters**: The parameters provided to methods in the subclass must be at least as permissive as their base class counterparts.  They can be more permissive than the base counterparts.
 
 2) **Covariance of return types**: The return values emitted from methods in the subclass must be at least as restrictive as their base class counterparts.  They can be more restrictive than the base counterparts.
