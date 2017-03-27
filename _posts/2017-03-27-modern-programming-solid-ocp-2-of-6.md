@@ -4,7 +4,6 @@ title:  "Modern Programming: S[O]LID (2 of 6)"
 date:   2017-03-27 15:14:00 -0700
 categories: modern-programming solid ocp engineering-excellence
 ---
-Modern Programming: S[O]LID (2 of 6)
 # Introduction
 This is part two of a series of articles on using a collection of principles known as SOLID to achieve higher-quality code, as measured primarily through its cost (or ease) of maintenance.
 
