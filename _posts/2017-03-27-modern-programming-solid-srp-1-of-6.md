@@ -5,7 +5,7 @@ date:   2017-03-27 14:49:00 -0700
 categories: modern-programming solid srp engineering-excellence
 ---
 # Rationale
-The primary motivation of these articles is to reduce the cost of maintenance of code.  This cost typically dwarfs the cost of writing code, since code is written "once" and then maintained for a (hopefully) long period of time (article #6 provides research data to back this).
+The primary motivation of these articles is to reduce the cost of maintenance of code.  This cost typically dwarfs the cost of writing code, since code is written "once" and then maintained for a (hopefully) long period of time ([article #5](https://bradleygibson.github.io/modern-programming/solid/srp/engineering-excellence/2017/03/27/modern-programming-solid-isp-5-of-6.html) provides research data to back this).
 
 While everyone understands the process of bug-fixing, when we consider the addition of new features into the codebase as a form of maintenance (changing some specific behavior, while ensuring we have not broken or regressed existing behavior), it becomes easy to see why optimizing code for maintainability is so essential.
 
