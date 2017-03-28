@@ -26,11 +26,13 @@ So let’s jump in and look at some specifics.
 # S - Single Responsibility Principle (SRP)
 The Single Responsibility Principle states that a class should have exactly one responsibility or job to do, from the perspective of the software’s specification.  Take, as an arbitrary, simple example, a data store, whose interface might look something like this (C#):
  
-        public interface IDataStore<T> where T: class
-        {
-            void Add(T item);       //*See also Fluent API note below.
-            IDataStore<T> Save();
-        }
+ {% highlight c# linenos %}
+ public interface IDataStore<T> where T: class
+ {
+     void Add(T item);       //*See also Fluent API note below.
+     IDataStore<T> Save();
+ }
+{%endhighlight%}
  *Consider `IDataStore<T> Add(T item)` instead for a [Fluent API design](https://en.wikipedia.org/wiki/Fluent_interface) (more about these in another article).
  
 A typical implementation might be:
