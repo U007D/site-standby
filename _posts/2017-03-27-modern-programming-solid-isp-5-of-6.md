@@ -16,75 +16,79 @@ The benefit is that clients no longer need to be aware of the APIs they are not 
 
 Let’s look at an example in code:
 
-    //ISP-violating example
-    public class Employee
-    {
-        public string Name { get; set; }
-        public string Title { get; set; }
-        public PhoneNumber Phone { get; set; }
-        public EmailAddress Email { get; set; }
-        //...
-    }
+{%highlight c# linenos%}
+//ISP-violating example
+public class Employee
+{
+    public string Name { get; set; }
+    public string Title { get; set; }
+    public PhoneNumber Phone { get; set; }
+    public EmailAddress Email { get; set; }
+    //...
+}
 
-    public class Caller
+public class Caller
+{
+    CallResult Call(Employee employee)
     {
-        CallResult Call(Employee employee)
-        {
-            //Call employee
-        }
+        //Call employee
     }
-    
-    public class Emailer
+}
+
+public class Emailer
+{
+    bool Email(Employee employee, string subject, string body)
     {
-        bool Email(Employee employee, string subject, string body)
-        {
-            //Email employee
-        }
+        //Email employee
     }
+}
+{%endhighlight%}
 
 At first glance, this might seem like a reasonable (and very common) separation of concerns. ISP asks us to look at the burden we are imposing on `Employee`’s clients. Should `Caller` have to know what to do with (or not to do with) `Email`? Should `Emailer` need or want to know about `Phone`?
 
 Let’s refactor this with ISP in mind:
 
-    public interface INameable
+{%highlight c# linenos%}
+public interface INameable
+{
+    string Name { get; set; }
+}
+
+public interface ICallable : INameable
+{
+    PhoneNumber Phone { get; set; }
+}
+
+public interface IEmailable : INameable
+{
+    EmailAddress Email { get; set; }
+}
+
+public class Employee : INameable, ICallable, IEmailable
+{
+    public string Name { get; set; }
+    public string Title { get; set; }
+    public PhoneNumber Phone { get; set; }
+    public EmailAddress Email { get; set; }
+    ...
+}
+
+public class Caller : ICallable
+{
+    CallResult Call(ICallable person)
     {
-        string Name { get; set; }
+        //Call person (Only Name and Phone are available)
     }
-    
-    public interface ICallable : INameable
+}
+
+public class Emailer : IEmailable
+{
+    bool Email(IEmailable person, string subject, string body)
     {
-        PhoneNumber Phone { get; set; }
+        //Email person (Only Name and Email are available)
     }
-    
-    public interface IEmailable : INameable
-    {
-        EmailAddress Email { get; set; }
-    }
-    
-    public class Employee : INameable, ICallable, IEmailable
-    {
-        public string Name { get; set; }
-        public string Title { get; set; }
-        public PhoneNumber Phone { get; set; }
-        public EmailAddress Email { get; set; }
-        ...
-    }
-    
-    public class Caller : ICallable
-    {
-        CallResult Call(ICallable person)
-        {
-            //Call person (Only Name and Phone are available)
-        }
-    }
-    
-    public class Emailer : IEmailable
-    {
-        bool Email(IEmailable person, string subject, string body)
-        {
-            //Email person (Only Name and Email are available)
-        }
-    }
+}
+{%endhighlight%}
 
 Now `Caller` deals with a focused and consistent interface, as does `Emailer`. This code is easier to update or extend with fewer “surprises” as a result of this focus. As the problem gets more complex, the value of ISP *increases*--consider a product inventory interface (and the variations in interface required by different types of product) or security interfaces (where ideally, some API’s would not even be available to some types of user). In such a system, with potentially dozens of product- or domain-specific API endpoints--having every client understand which are relevant to its specific task and which not to touch when “everything” is exposed becomes a significant and completely unnecessary burden for client implementation and maintenance.
 
