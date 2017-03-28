@@ -12,7 +12,7 @@ Classic examples for illustrating LSP are the [Circle-Ellipse](https://en.wikipe
 
 Consider a program designed to render the patterns birds make flying in the sky. Let's assume the author wisely employs SOLID’s OCP principle to ensure and close (fix) basic common capabilities in the abstract (ie. non-instantiatable) base class:
 
-{%highlight c# linenos%}
+{%highlight c++ linenos%}
 class Bird
 {
 public:
@@ -24,7 +24,7 @@ public:
 
 Our author allows for extensibility (for example, different flight patterns for different species of birds) through inheritance. Version 1 of the app goes to market and is a huge hit. The author hires more developers and version 2 goes out and does even better. Then, some movie comes out with cute, cuddly penguins and version 3 must have penguins. No problem, just create a Penguin class which inherits from Bird. But the problem becomes apparent when defining the implementation for `Penguin::Altitude`:
 
-{%highlight c# linenos%}
+{%highlight c++ linenos%}
 void Penguin::setAltitude(double altitude)
 {
     //altitude can't be set because penguins can't fly
@@ -38,7 +38,7 @@ Despite our author’s best efforts to follow OCP, he failed LSP because he made
 
 So what’s the solution?
 
-{%highlight c# linenos%}
+{%highlight c++ linenos%}
 //Solution #1: The wrong way to solve the problem
 void ArrangeBirdInPattern(Bird* aBird)
 {
@@ -61,7 +61,7 @@ OK, figure out if the Bird is a Penguin, and if it is, arrange it using the spec
 
 Let’s try something else. We could add a predicate to tell us whether the bird in question was flightless or not:
 
-{%highlight c# linenos%}
+{%highlight c++ linenos%}
 //Solution 2: A slightly better way to do it?
 void ArrangeBirdInPattern(Bird* aBird)
 {
@@ -82,7 +82,7 @@ And we haven't really solved the problem for the case when different flightless 
 
 What happens when we try addressing the flawed assumption itself?
 
-{%highlight c# linenos%}
+{%highlight c++ linenos%}
 //Solution 3: Proper API design
 class Bird
 {
