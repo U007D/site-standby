@@ -6,6 +6,8 @@ categories: modern-programming solid dip engineering-excellence
 ---
 D - Dependency Inversion Principle (DIP)
 
+The preceding chapter (Part 4) of this series can be found [here](https://bradleygibson.github.io/modern-programming/solid/srp/engineering-excellence/2017/03/27/modern-programming-solid-isp-5-of-6.html).
+
 DIP is probably the least-well understood (and the most misunderstood) of the SOLID principles.
 
 If you are unfamiliar with the concept of dependency injection, then you can safely ignore the rest of this paragraph for now.  For everyone else, it is important to call out that dependency inversion != dependency injection. While adhering to DIP may indeed lead you to employ some flavor of dependency injection (eg. Constructor, Service Locator, Inversion of Control or other pattern), it is important to call out that dependency inversion and injection are not synonymous. (The distinction is perhaps worthy of a future article.)  For now, understand that Dependency Injection is but one means of achieving DIP.
