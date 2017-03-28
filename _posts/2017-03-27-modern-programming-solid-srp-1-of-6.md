@@ -9,8 +9,6 @@ The primary motivation of these articles is to reduce the cost of maintenance of
 
 While everyone understands the process of bug-fixing, when we consider the addition of new features into the codebase as a form of maintenance (changing some specific behavior, while ensuring we have not broken or regressed existing behavior), it becomes easy to see why optimizing code for maintainability is so essential.
 
----
-
 # Modern Programming: SOLID
 If you have been writing software for any period of time, you have witnessed the rise and fall of various languages, programming paradigms and philosophies.
  
