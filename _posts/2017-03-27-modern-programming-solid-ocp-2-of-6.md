@@ -17,59 +17,63 @@ So the modern Polymorphic Open/Closed Principle is the flavor that I subscribe t
 
 Here’s an example, with a simple `Logger` class which lets the caller log to different destinations (C#):
 
-    public class Logger
+{%highlight c# linenos%}
+public class Logger
+{
+    public Logger Log(string message, LogType logType)
     {
-        public Logger Log(string message, LogType logType)
+        switch(logType)
         {
-            switch(logType)
-            {
-                case LogType.Console:
-                    //Write message to console
-                    break;
-    
-                case LogType.LocalDisk:
-                    //Write message to local disk
-                    break;
-    
-                default:
-                    //throw (logType not recognized)
-            }
-            return this;
+            case LogType.Console:
+                //Write message to console
+                break;
+
+            case LogType.LocalDisk:
+                //Write message to local disk
+                break;
+
+            default:
+                //throw (logType not recognized)
         }
+        return this;
     }
+}
+{%endhighlight%}
 
 Now let’s add a new logging destination (`LogType`).  Note we must go update the Logger class, which means we risk altering or breaking existing behavior anywhere in the application which logs.  Further, anyone wanting to add a LogType must fully understand the existing implementation before adding new functionality or risk introducing bug which could manifest nearly anywhere in the application.
 
 Contrast this with a refactored version of Logger subscribing to OCP:
 
-    public enum LogType
+{%highlight c# linenos%}
+public enum LogType
+{
+    Console,
+    LocalDisk
+}
+
+public interface ILogger
+{
+    ILogger Log(string message, LogType logType);
+}
+
+public class ConsoleLogger : ILogger
+{
+    public ILogger Log(string message, LogType logType)
     {
-        Console,
-        LocalDisk
+        //Write message to console
+        return this;
     }
-    
-    public interface ILogger
+}
+
+public class LocalDiskLogger : ILogger
+{
+    public ILogger Log(string message, LogType logType)
     {
-        ILogger Log(string message, LogType logType);
+        //Write message to local disk
+        return this;
     }
-    
-    public class ConsoleLogger : ILogger
-    {
-        public ILogger Log(string message, LogType logType)
-        {
-            //Write message to console
-            return this;
-        }
-    }
-    
-    public class LocalDiskLogger : ILogger
-    {
-        public ILogger Log(string message, LogType logType)
-        {
-            //Write message to local disk
-            return this;
-        }
-    }
+}
+{%endhighlight%}
 
 You can see that ILogger represents the interface that OCP calls for.  Adding a new type of Logger is now simply a matter of implementing the ILogger interface.  There is no chance that the new derivation of ILogger will break an existing implementation; the implementer is also no longer required to wade through and understand the existing implementations in advance of safely adding the new functionality.
 
