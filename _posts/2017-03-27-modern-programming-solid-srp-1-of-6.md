@@ -26,8 +26,8 @@ So let’s jump in and look at some specifics.
 # S - Single Responsibility Principle (SRP)
 The Single Responsibility Principle states that a class should have exactly one responsibility or job to do, from the perspective of the software’s specification.  Take, as an arbitrary, simple example, a data store, whose interface might look something like this (C#):
  
-{%highlight csharp linenos%}
-public interface IDataStore<T>
+{%highlight c# linenos%}
+public interface IDataStore<T> where T: class
 {
     void Add(T item);       //*See also Fluent API note below.
     IDataStore<T> Save();
@@ -37,34 +37,36 @@ public interface IDataStore<T>
  
 A typical implementation might be:
         
-        public class DataStore<T> where T : class
+{%highlight c# linenos%}
+public class DataStore<T> where T : class
+{
+    private IPersistentStore store;  //Some interface to persistent storage
+
+    public DataStore(IPersistentStore store)
+    {
+        this.store = store;
+    }
+
+    public void Add(T item)
+    {
+        this.store.Add(T item);
+    }
+
+    public IDataStore<T> Save()
+    {
+        try
         {
-            private IPersistentStore store;  //Some interface to persistent storage
- 
-            public DataStore(IPersistentStore store)
-            {
-                this.store = store;
-            }
- 
-            public void Add(T item)
-            {
-                this.store.Add(T item);
-            }
- 
-            public IDataStore<T> Save()
-            {
-                try
-                {
-                    this.store.Persist();
-                }
-                catch (Exception e)
-                {
-                    File.AppendAllText(pathToLog + "log.txt", e.ToString());
-                    throw;
-                }
-                return this;
-            }
+            this.store.Persist();
         }
+        catch (Exception e)
+        {
+            File.AppendAllText(pathToLog + "log.txt", e.ToString());
+            throw;
+        }
+        return this;
+    }
+}
+{%endhighlight%}
  
 The above `DataStore` class abstracts the backing store and will log an event if there is a problem writing to that backing store.  That seems both reasonable and straightforward.
 
