@@ -27,8 +27,7 @@ So let’s jump in and look at some specifics.
 The Single Responsibility Principle states that a class should have exactly one responsibility or job to do, from the perspective of the software’s specification.  Take, as an arbitrary, simple example, a data store, whose interface might look something like this (C#):
  
 {%highlight csharp linenos%}
-public interface IDataStore<T> where T: class
-{
+public interface IDataStore<T> where T: class {
     void Add(T item);       //*See also Fluent API note below.
     IDataStore<T> Save();
 }
