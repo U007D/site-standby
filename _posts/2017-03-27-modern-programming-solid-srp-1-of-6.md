@@ -12,7 +12,7 @@ While everyone understands the process of bug-fixing, when we consider the addit
 # Modern Programming: SOLID
 If you have been writing software for any period of time, you have witnessed the rise and fall of various languages, programming paradigms and philosophies.
  
-I am continually looking at those ideas which have proven themselves and am attempting to incorporate several industry best-practice concepts into my personal software engineering approach.  I refer to the collective representing the ideas we choose to put into practice as “Modern Programming”.  (Adapted from the term “Modern C++”, coined by Andrei Alexandrescu, used today to describe a new and changed collection of important C++ styles and idioms, debuting in C++11).
+I am continually looking at those ideas which have proven themselves and am attempting to incorporate several industry best-practice concepts into my approach to software engineering.  I refer to the collective representing the ideas we choose to put into practice as “Modern Programming”.  (Adapted from the term “Modern C++”, coined by Andrei Alexandrescu, used today to describe a new and changed collection of important C++ styles and idioms, debuting in C++11).
  
 SOLID principles are an important aspect of Modern Programming
  
