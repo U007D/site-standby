@@ -63,23 +63,25 @@ Whew! Ok, so now we have a straightforward, comprehensible guideline for how to 
 
 Let’s look at an example in code to see it in practice, and perhaps discover why we might want to do DIP in the first place:
 
-    //Non-DIP implementation
-    public class Switch
+{%highlight c# linenos%}
+//Non-DIP implementation
+public class Switch
+{
+    private Lamp lamp = new Lamp();
+    void On()
     {
-        private Lamp lamp = new Lamp();
-        void On()
-        {
-            lamp.TurnOn();
-        }
+        lamp.TurnOn();
     }
-    
-    public class Lamp
+}
+
+public class Lamp
+{
+    public void TurnOn()
     {
-        public void TurnOn()
-        {
-            //Lamp implementation details
-        }
+        //Lamp implementation details
     }
+}
+{%endhighlight%}
 
 We can see that `Switch` clearly has a dependency on `Lamp`. If `Lamp` needs to change, it’s entirely possible that those changes will ripple through to its interface, which would mean potential changes to any and all classes that depend on it. By now, you have seen that SOLID principles are all about compartmentalizing change--ensuring that, as much as possible, change happens in specific, focused areas so that uncertainty caused by change is localized.
 
@@ -87,33 +89,35 @@ You’ll also recall that SOLID also promises a longer useful life for our code.
 
 Let's make some changes:
 
-    public interface ISwitchableDevice
+{%highlight c# linenos%}
+public interface ISwitchableDevice
+{
+    void TurnOn();
+}
+
+public class Switch
+{
+    private ISwitchableDevice device;
+
+    Switch(ISwitchableDevice device) //Constructor dependency injection
     {
-        void TurnOn();
+        this.device = device;
     }
-    
-    public class Switch
+
+    public void On()
     {
-        private ISwitchableDevice device;
-    
-        Switch(ISwitchableDevice device) //Constructor dependency injection
-        {
-            this.device = device;
-        }
-    
-        public void On()
-        {
-            device.TurnOn();
-        }
+        device.TurnOn();
     }
-    
-    public class Lamp : ISwitchableDevice
+}
+
+public class Lamp : ISwitchableDevice
+{
+    public void TurnOn()
     {
-        public void TurnOn()
-        {
-            //Lamp implementation details
-        }
+        //Lamp implementation details
     }
+}
+{%endhighlight%}
 
 Now `Switch` takes any object with implements the ISwitchableDevice interface in its constructor, and stores that instance in a private variable for later use.  This form of DIP is known as **Constructor [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection)**. For now, let's just agree that "something else" not shown here (eg. Factory, initialization routine, config file, etc.) decides what `ISwitchableDevice` should be created and passes an instance to `Switch`’s constructor. It’s not important for this article what the “something else” is (and it could be a whole set of blog posts unto itself).
 
